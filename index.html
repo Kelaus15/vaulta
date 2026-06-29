@@ -3,518 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vaulta | Le tue finanze sotto controllo</title>
-  <meta name="description" content="Vaulta è il software per gestire conti, spese, budget, tasse e obiettivi. Funziona offline su Windows e Linux, senza abbonamenti." />
-
-  <style>
-    :root {
-      --bg: #07110d;
-      --bg2: #0b1c14;
-      --card: #10281c;
-      --card2: #143724;
-      --text: #effff4;
-      --muted: #a9c4b3;
-      --green: #15e07b;
-      --green2: #39ff88;
-      --blue: #2f89ff;
-      --yellow: #ffd33d;
-      --red: #ff5d68;
-      --border: rgba(57,255,136,.25);
-      --shadow: 0 30px 90px rgba(0,0,0,.38);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top right, #143c64 0, transparent 36%),
-                  radial-gradient(circle at top left, rgba(21,224,123,.16), transparent 34%),
-                  var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1180px, calc(100% - 42px));
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(7,17,13,.86);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .nav {
-      height: 82px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-weight: 900;
-      font-size: 1.55rem;
-      letter-spacing: -.03em;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(21,224,123,.16), rgba(47,137,255,.18));
-      color: var(--green2);
-      border: 1px solid var(--border);
-      font-size: 1.8rem;
-      font-weight: 950;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    nav a:hover {
-      color: var(--text);
-    }
-
-    .nav-cta, .btn-primary {
-      background: linear-gradient(135deg, var(--yellow), #ffb700);
-      color: #151000;
-      font-weight: 900;
-      border-radius: 999px;
-      padding: 13px 22px;
-      box-shadow: 0 14px 36px rgba(255,211,61,.2);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero {
-      padding: 100px 0 78px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.02fr .98fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 16px;
-      border-radius: 999px;
-      color: var(--yellow);
-      border: 1px solid rgba(255,211,61,.42);
-      background: rgba(255,211,61,.08);
-      font-weight: 900;
-      margin-bottom: 24px;
-    }
-
-    h1 {
-      font-size: clamp(3.2rem, 7vw, 6.2rem);
-      line-height: .96;
-      letter-spacing: -.065em;
-      margin: 0 0 26px;
-    }
-
-    .yellow {
-      color: var(--yellow);
-    }
-
-    .lead {
-      font-size: clamp(1.15rem, 2vw, 1.45rem);
-      color: #d8e9df;
-      max-width: 720px;
-      margin: 0 0 30px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.14);
-      color: var(--text);
-      font-weight: 900;
-      border-radius: 16px;
-      padding: 15px 24px;
-      display: inline-flex;
-    }
-
-    .mini-trust {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      color: #cfe2d6;
-      font-weight: 800;
-    }
-
-    .mock-card {
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 34px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-    }
-
-    .app-preview {
-      background: #06100c;
-      border-radius: 24px;
-      padding: 24px;
-      border: 1px solid var(--border);
-      min-height: 430px;
-    }
-
-    .preview-top {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 22px;
-    }
-
-    .dot {
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.28);
-    }
-
-    .preview-box {
-      background: #0b1c14;
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 16px;
-    }
-
-    .preview-label {
-      color: #b8d0c2;
-      margin-bottom: 8px;
-    }
-
-    .preview-value {
-      font-size: 2.35rem;
-      font-weight: 950;
-    }
-
-    .preview-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .mini-chart {
-      height: 120px;
-      border-radius: 18px;
-      background:
-        linear-gradient(180deg, transparent 0 70%, rgba(21,224,123,.22) 70% 100%),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 2px, transparent 2px 36px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mini-chart:after {
-      content: "";
-      position: absolute;
-      left: 16px;
-      right: 16px;
-      top: 74px;
-      height: 4px;
-      background: var(--yellow);
-      transform: rotate(-9deg);
-      border-radius: 99px;
-      box-shadow: 0 -18px 0 rgba(255,211,61,.18);
-    }
-
-    section {
-      padding: 86px 0;
-    }
-
-    .section-head {
-      text-align: center;
-      max-width: 850px;
-      margin: 0 auto 42px;
-    }
-
-    .eyebrow {
-      color: var(--green2);
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      font-size: .82rem;
-    }
-
-    h2 {
-      font-size: clamp(2.1rem, 4vw, 3.6rem);
-      line-height: 1.06;
-      letter-spacing: -.04em;
-      margin: 12px 0 14px;
-    }
-
-    .section-head p {
-      color: var(--muted);
-      font-size: 1.15rem;
-      margin: 0;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .feature {
-      background: rgba(16,40,28,.88);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: 0 18px 50px rgba(0,0,0,.18);
-    }
-
-    .feature .icon {
-      font-size: 1.8rem;
-      margin-bottom: 14px;
-    }
-
-    .feature h3 {
-      margin: 0 0 9px;
-      font-size: 1.15rem;
-    }
-
-    .feature p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .screenshots {
-      background: linear-gradient(180deg, rgba(255,255,255,.025), transparent);
-    }
-
-    .screenshot-card {
-      max-width: 1180px;
-      margin: 0 auto;
-      border-radius: 30px;
-      padding: 12px;
-      background: rgba(255,255,255,.055);
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow);
-    }
-
-    .screenshot-card img {
-      display: block;
-      width: 100%;
-      border-radius: 22px;
-      border: 1px solid rgba(21,224,123,.35);
-    }
-
-    .screenshot-note {
-      margin-top: 18px;
-      text-align: center;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .pricing-wrap {
-      display: grid;
-      grid-template-columns: 1fr .9fr;
-      gap: 28px;
-      align-items: stretch;
-    }
-
-    .price-card {
-      background: linear-gradient(180deg, #12305a, #0e261b);
-      border: 1px solid rgba(255,211,61,.32);
-      border-radius: 32px;
-      padding: 36px;
-      box-shadow: var(--shadow);
-    }
-
-    .price-line {
-      display: flex;
-      gap: 28px;
-      align-items: baseline;
-      margin: 20px 0;
-    }
-
-    .old-price {
-      font-size: 1.7rem;
-      color: #c1ccd2;
-      text-decoration: line-through;
-      font-weight: 900;
-    }
-
-    .price {
-      font-size: clamp(3rem, 7vw, 5rem);
-      font-weight: 950;
-      line-height: 1;
-    }
-
-    .price-card p {
-      color: #c9dceb;
-      font-size: 1.12rem;
-    }
-
-    .price-card ul {
-      margin: 26px 0 30px;
-      padding-left: 22px;
-      font-size: 1.05rem;
-    }
-
-    .price-card li {
-      margin: 12px 0;
-    }
-
-    .btn-wide {
-      width: 100%;
-      border-radius: 18px;
-      padding: 18px 24px;
-      font-size: 1.05rem;
-    }
-
-    .payment-note {
-      color: #c9dceb;
-      margin-top: 14px;
-      font-weight: 700;
-      font-size: .96rem;
-    }
-
-    .trust-card {
-      background: rgba(255,255,255,.055);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 32px;
-      padding: 36px;
-    }
-
-    .trust-card h3 {
-      font-size: 1.8rem;
-      margin: 0 0 16px;
-    }
-
-    .trust-list {
-      display: grid;
-      gap: 14px;
-      color: #d5eadc;
-      font-weight: 800;
-    }
-
-    .faq-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .faq {
-      background: rgba(16,40,28,.88);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 24px;
-    }
-
-    .faq h3 {
-      margin: 0 0 8px;
-    }
-
-    .faq p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    footer {
-      border-top: 1px solid rgba(255,255,255,.1);
-      padding: 34px 0;
-      color: var(--muted);
-      background: rgba(0,0,0,.22);
-    }
-
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid, .pricing-wrap {
-        grid-template-columns: 1fr;
-      }
-
-      .features {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      nav {
-        gap: 12px;
-        font-size: .92rem;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .nav {
-        height: auto;
-        padding: 14px 0;
-        align-items: flex-start;
-      }
-
-      nav {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 58px;
-      }
-
-      .features, .faq-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .preview-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <title>Vaulta 4.2 | Finanze personali offline per Windows e Linux</title>
+  <meta name="description" content="Vaulta 4.2 è il software desktop per gestire conti, movimenti, budget, tasse, obiettivi e report. Funziona offline su Windows e Linux, senza abbonamenti." />
+  <meta property="og:title" content="Vaulta 4.2" />
+  <meta property="og:description" content="Le tue finanze sotto controllo. Offline, semplice, potente." />
+  <meta property="og:image" content="assets/vaulta-collage.png" />
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <header>
+  <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="#">
-        <span class="brand-mark">V</span>
-        <span>Vaulta</span>
+      <a class="brand" href="#top" aria-label="Vaulta home">
+        <img src="assets/logo.png" alt="Logo Vaulta" />
+        <span>Vaulta <b>4.2</b></span>
       </a>
-
-      <nav>
+      <nav aria-label="Menu principale">
         <a href="#funzioni">Funzioni</a>
         <a href="#screenshot">Screenshot</a>
+        <a href="#download">Download</a>
         <a href="#prezzo">Prezzo</a>
         <a href="#faq">FAQ</a>
         <a class="nav-cta" href="https://payhip.com/b/Q5RrJ" target="_blank" rel="noopener">Acquista</a>
@@ -522,292 +29,148 @@
     </div>
   </header>
 
-  <main>
+  <main id="top">
     <section class="hero">
       <div class="container hero-grid">
-        <div>
-          <div class="badge">🔥 Prezzo di lancio: € 19,90</div>
-          <h1>Le tue finanze.<br><span class="yellow">Sotto controllo.</span></h1>
-          <p class="lead">
-            Gestisci conti, spese, budget, obiettivi e tasse in un'unica applicazione veloce, privata e completamente offline.
-          </p>
-
+        <div class="hero-copy">
+          <div class="badge">Vaulta 4.2 ufficiale · Windows e Linux</div>
+          <h1>La tua finanza personale.<br><span>Semplice. Potente. Offline.</span></h1>
+          <p class="lead">Gestisci conti, movimenti, spese fisse, budget, tasse, obiettivi e report in un'unica applicazione desktop. I dati restano sul tuo computer.</p>
           <div class="hero-actions">
-            <a class="btn-primary" href="https://payhip.com/b/Q5RrJ" target="_blank" rel="noopener">Acquista ora</a>
-            <a class="btn-secondary" href="#screenshot">Scopri Vaulta</a>
+            <a class="btn primary" href="https://payhip.com/b/Q5RrJ" target="_blank" rel="noopener">Acquista ora</a>
+            <a class="btn secondary" href="#screenshot">Guarda gli screenshot</a>
           </div>
-
-          <div class="mini-trust">
+          <div class="trust-row">
             <span>✓ Nessun abbonamento</span>
-            <span>✓ Windows e Linux</span>
-            <span>✓ Dati sul tuo PC</span>
-            <span>✓ Nessuna registrazione richiesta</span>
+            <span>✓ Database locale</span>
+            <span>✓ Backup integrati</span>
+            <span>✓ Multi-skin</span>
           </div>
         </div>
-
-        <div class="mock-card" aria-label="Anteprima interfaccia Vaulta">
-          <div class="app-preview">
-            <div class="preview-top">
-              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            </div>
-
-            <div class="preview-box">
-              <div class="preview-label">Patrimonio totale</div>
-              <div class="preview-value">€ 24.580</div>
-            </div>
-
-            <div class="preview-grid">
-              <div class="preview-box">
-                <div class="preview-label">Entrate</div>
-                <div class="preview-value">€ 3.240</div>
-              </div>
-              <div class="preview-box">
-                <div class="preview-label">Uscite</div>
-                <div class="preview-value">€ 2.120</div>
-              </div>
-              <div class="preview-box mini-chart"></div>
-              <div class="preview-box mini-chart"></div>
-            </div>
-          </div>
+        <div class="hero-card">
+          <img src="assets/vaulta-collage.png" alt="Anteprima schermate Vaulta 4.2" />
         </div>
       </div>
     </section>
 
-    <section id="funzioni">
+    <section id="funzioni" class="section">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Funzioni</span>
-          <h2>Tutto quello che serve per gestire il denaro</h2>
-          <p>Vaulta ti aiuta a vedere dove vanno i soldi, pianificare il mese e tenere sotto controllo conti e scadenze.</p>
+        <div class="section-title">
+          <p class="eyebrow">Funzioni principali</p>
+          <h2>Tutto quello che serve per controllare il mese</h2>
+          <p>Vaulta trasforma i dati sparsi in una vista chiara: saldo, cashflow, spese, scadenze e obiettivi.</p>
         </div>
-
-        <div class="features">
-          <div class="feature">
-            <div class="icon">📊</div>
-            <h3>Dashboard finanziaria</h3>
-            <p>Saldo, cashflow, spese fisse, variabili e forecast di fine mese.</p>
-          </div>
-
-          <div class="feature">
-            <div class="icon">💳</div>
-            <h3>Conti multipli</h3>
-            <p>Gestisci conto corrente, risparmi, carte e investimenti.</p>
-          </div>
-
-          <div class="feature">
-            <div class="icon">🧾</div>
-            <h3>Movimenti</h3>
-            <p>Registra entrate e uscite con categorie, descrizione e conto.</p>
-          </div>
-
-          <div class="feature">
-            <div class="icon">🎯</div>
-            <h3>Budget e obiettivi</h3>
-            <p>Imposta limiti di spesa e monitora i tuoi progressi.</p>
-          </div>
-
-          <div class="feature">
-            <div class="icon">📅</div>
-            <h3>Spese fisse</h3>
-            <p>Gestisci ricorrenze, scadenze e mesi residui automatici.</p>
-          </div>
-
-          <div class="feature">
-            <div class="icon">📈</div>
-            <h3>Report e grafici</h3>
-            <p>Analizza mese per mese entrate, uscite e categorie.</p>
-          </div>
-
-          <div class="feature">
-            <div class="icon">🏛️</div>
-            <h3>Tasse</h3>
-            <p>Segui importi, pagamenti parziali e scadenze fiscali.</p>
-          </div>
-
-          <div class="feature">
-            <div class="icon">💾</div>
-            <h3>Backup</h3>
-            <p>Proteggi i tuoi dati con salvataggi locali.</p>
-          </div>
+        <div class="features-grid">
+          <article><span>📊</span><h3>Dashboard</h3><p>KPI, forecast, patrimonio, alert e riepilogo rapido.</p></article>
+          <article><span>💳</span><h3>Conti multipli</h3><p>Corrente, risparmi, carte, contanti e altri patrimoni.</p></article>
+          <article><span>💶</span><h3>Movimenti</h3><p>Entrate, uscite, trasferimenti, categorie e descrizioni.</p></article>
+          <article><span>🔁</span><h3>Spese fisse</h3><p>Ricorrenze, fine validità e generazione mensile.</p></article>
+          <article><span>🎯</span><h3>Budget e obiettivi</h3><p>Limiti mensili, percentuali, card e avanzamento.</p></article>
+          <article><span>🧾</span><h3>Tasse</h3><p>Importi, pagamenti parziali, residui e scadenze.</p></article>
+          <article><span>📈</span><h3>Analisi e grafici</h3><p>Mesi a confronto, andamento conti e patrimonio.</p></article>
+          <article><span>💾</span><h3>Backup locali</h3><p>Backup manuali e ZIP completi per aggiornare in sicurezza.</p></article>
         </div>
       </div>
     </section>
 
-    <section id="screenshot" class="screenshots">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Screenshot</span>
-          <h2>Guarda Vaulta in azione</h2>
-          <p>Schermate dimostrative con dati di esempio: dashboard, movimenti, spese fisse e analisi mese per mese.</p>
+    <section class="section dark" id="privacy">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">Privacy</p>
+          <h2>Niente cloud obbligatorio. Niente registrazione.</h2>
+          <p>Vaulta lavora offline: il database viene creato nella cartella dell'app e resta sul tuo PC. Puoi fare backup, spostarlo o duplicarlo quando vuoi.</p>
         </div>
-
-        <div class="screenshot-card">
-  <img src="assets/dashboard.jpg" alt="Dashboard Vaulta">
-</div>
-
-<br><br>
-
-<div class="screenshot-card">
-  <img src="assets/movimenti.jpg" alt="Movimenti Vaulta">
-</div>
-
-<br><br>
-
-<div class="screenshot-card">
-  <img src="assets/spese-fisse.jpg" alt="Spese fisse Vaulta">
-</div>
-
-<br><br>
-
-<div class="screenshot-card">
-  <img src="assets/mese-x-mese.jpg" alt="Analisi mese x mese Vaulta">
-</div>
-
-<div class="screenshot-note">
-  Schermate reali di Vaulta.
-</div>
-
-        <div class="screenshot-note">
-          I dati mostrati sono esempi dimostrativi.
+        <div class="benefit-list">
+          <div>✓ Dati salvati localmente</div>
+          <div>✓ Funziona anche senza Internet</div>
+          <div>✓ Nessun account obbligatorio</div>
+          <div>✓ Ideale per uso personale e piccoli professionisti</div>
         </div>
       </div>
     </section>
 
-    <section id="prezzo">
+    <section id="screenshot" class="section screenshots">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Prezzo</span>
-          <h2>Licenza semplice. Nessun canone mensile.</h2>
-          <p>Paghi una volta, installi Vaulta e gestisci i tuoi dati localmente.</p>
+        <div class="section-title">
+          <p class="eyebrow">Screenshot</p>
+          <h2>Vaulta 4.2 in azione</h2>
+          <p>Schermate reali con dati dimostrativi.</p>
         </div>
-
-        <div class="pricing-wrap">
-          <div class="price-card">
-            <div class="badge">Offerta di lancio</div>
-
-            <div class="price-line">
-              <span class="old-price">€ 19,90</span>
-              <span class="price">€ 14,90</span>
-            </div>
-            <p style="font-weight:700;color:#fff;">
-                Pagamento una tantum. Nessun rinnovo automatico.
-            </p>
-            <p>
-              🔥 Offerta di lancio limitata.
-
-                Acquista oggi Vaulta a € 14,90 invece di € 19,90.
-
-                Licenza permanente, nessun abbonamento.
-            </p>
-
-            <ul>
-              <li>Licenza permanente</li>
-              <li>Versione Windows</li>
-              <li>Versione Linux</li>
-              <li>Utilizzo offline</li>
-              <li>Dati salvati localmente</li>
-              <li>Supporto all'installazione</li>
-            </ul>
-
-            <a class="btn-primary btn-wide" href="https://payhip.com/b/Q5RrJ" target="_blank" rel="noopener">Acquista ora</a>
-
-            <div class="payment-note">
-              🔒 Pagamento sicuro tramite PayPal e Payhip.
-            </div>
-          </div>
-
-          <div class="trust-card">
-            <h3>Perché scegliere Vaulta?</h3>
-
-            <div class="trust-list">
-              <span>✓ Nessun abbonamento</span>
-              <span>✓ Nessun cloud obbligatorio</span>
-              <span>✓ Nessuna registrazione necessaria</span>
-              <span>✓ I dati restano sul tuo computer</span>
-              <span>✓ Ideale per famiglie, privati e piccoli professionisti</span>
-              <span>✓ ✓ Nuove funzionalità in sviluppo</span>
-            </div>
-          </div>
+        <div class="screenshot-grid">
+          <figure><img src="assets/dashboard.jpg" alt="Dashboard Vaulta"><figcaption>Dashboard</figcaption></figure>
+          <figure><img src="assets/movimenti.jpg" alt="Movimenti Vaulta"><figcaption>Movimenti</figcaption></figure>
+          <figure><img src="assets/spese-fisse.jpg" alt="Spese fisse Vaulta"><figcaption>Spese fisse</figcaption></figure>
+          <figure><img src="assets/analisi-mesi.jpg" alt="Analisi mesi Vaulta"><figcaption>Analisi mesi</figcaption></figure>
         </div>
       </div>
     </section>
-<section id="per-chi">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Per chi è</span>
-      <h2>Vaulta è pensato per</h2>
-    </div>
 
-    <div class="features">
-      <div class="feature">
-        <h3>👨‍👩‍👧 Famiglie</h3>
-        <p>Controlla entrate, uscite e spese ricorrenti.</p>
-      </div>
-
-      <div class="feature">
-        <h3>👤 Privati</h3>
-        <p>Tieni traccia del patrimonio e degli obiettivi.</p>
-      </div>
-
-      <div class="feature">
-        <h3>💼 Professionisti</h3>
-        <p>Monitora costi, tasse e disponibilità.</p>
-      </div>
-
-      <div class="feature">
-        <h3>🔒 Privacy</h3>
-        <p>I dati restano sul tuo computer.</p>
-      </div>
-    </div>
-  </div>
-</section>
-    
-    <section id="faq">
+    <section id="download" class="section dark">
       <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">FAQ</span>
+        <div class="section-title">
+          <p class="eyebrow">Download</p>
+          <h2>Pronto per Windows e Linux</h2>
+          <p>Dopo l'acquisto ricevi i pacchetti per installare e avviare Vaulta.</p>
+        </div>
+        <div class="download-grid">
+          <article>
+            <h3>Windows</h3>
+            <p>Scarica lo ZIP, estrai la cartella e avvia <b>Vaulta.exe</b>.</p>
+            <small>Nota: Windows SmartScreen può mostrare un avviso perché l'app non è ancora firmata. Se proviene dalla pagina ufficiale, scegli “Altre informazioni” → “Esegui comunque”.</small>
+          </article>
+          <article>
+            <h3>Linux</h3>
+            <p>Scarica lo ZIP, estrai la cartella e avvia lo script <b>avvia_linux.sh</b>.</p>
+            <small>Il pacchetto Linux richiede Python 3 e installa le dipendenze indicate in requirements.txt.</small>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="prezzo" class="section">
+      <div class="container price-wrap">
+        <div class="price-card">
+          <span class="launch">Offerta di lancio</span>
+          <h2>Licenza permanente</h2>
+          <div class="price"><span class="old">€ 29,90</span>€ 19,90</div>
+          <p>Paghi una volta. Nessun abbonamento. Dati salvati localmente.</p>
+          <ul>
+            <li>Versione Windows</li>
+            <li>Versione Linux</li>
+            <li>Backup locali</li>
+            <li>Assistenza via email</li>
+            <li>Aggiornamenti valutabili su richiesta</li>
+          </ul>
+          <a class="btn primary full" href="https://payhip.com/b/Q5RrJ" target="_blank" rel="noopener">Acquista Vaulta</a>
+          <p class="note">Pagamento tramite Payhip/PayPal.</p>
+        </div>
+        <div class="updates-box">
+          <h3>Novità Vaulta 4.2</h3>
+          <p>Interfaccia rifinita, icone complete nelle pagine, wizard corretto, splash Windows sistemato, build Windows/Linux e struttura più pulita.</p>
+          <p>Questa è la base stabile per la pubblicazione e i futuri aggiornamenti 4.x.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section dark faq">
+      <div class="container">
+        <div class="section-title">
+          <p class="eyebrow">FAQ</p>
           <h2>Domande frequenti</h2>
         </div>
-
-        <div class="faq-grid">
-          <div class="faq">
-            <h3>Serve Internet?</h3>
-            <p>No. Vaulta funziona completamente offline.</p>
-          </div>
-
-          <div class="faq">
-            <h3>Dove vengono salvati i dati?</h3>
-            <p>Sul tuo computer. Nessun dato viene inviato a server esterni o servizi cloud.</p>
-          </div>
-
-          <div class="faq">
-            <h3>Funziona su Windows?</h3>
-            <p>Sì. Vaulta è disponibile per Windows</p>
-          </div>
-
-          <div class="faq">
-            <h3>Funziona su Linux?</h3>
-            <p>Sì. Vaulta è disponibile anche per Linux.</p>
-          </div>
-
-          <div class="faq">
-            <h3>Ci sono abbonamenti?</h3>
-            <p>No. Vaulta è pensato con licenza permanente.</p>
-          </div>
-
-          <div class="faq">
-            <h3>Posso proporre nuove funzioni?</h3>
-            <p>Sì. Miglioramenti e aggiornamenti possono essere valutati su richiesta.</p>
-          </div>
-        </div>
+        <details><summary>Serve Internet?</summary><p>No. Vaulta funziona offline. Internet serve solo per scaricare, acquistare o ricevere aggiornamenti.</p></details>
+        <details><summary>Dove sono salvati i dati?</summary><p>Nella cartella locale dell'app, dentro il database SQLite di Vaulta.</p></details>
+        <details><summary>È un abbonamento?</summary><p>No. Vaulta è pensato come licenza permanente.</p></details>
+        <details><summary>Posso usare più database?</summary><p>Sì. Puoi creare, selezionare, duplicare e gestire database diversi.</p></details>
+        <details><summary>Posso chiedere nuove funzioni?</summary><p>Sì. Gli aggiornamenti e le funzioni future possono essere valutati su richiesta.</p></details>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-row">
-      <div>© 2026 Vaulta. Tutti i diritti riservati.</div>
-      <div>Versione 1.0</div>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div><strong>Vaulta 4.2</strong><br>Traccia. Gestisci. Controlla.</div>
+      <div>Contatti: <a href="mailto:mic_monz@yahoo.com">mic_monz@yahoo.com</a></div>
     </div>
   </footer>
 </body>
