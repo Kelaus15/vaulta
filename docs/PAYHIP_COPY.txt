@@ -1,0 +1,26 @@
+TITOLO
+Vaulta 5.0 – Gestione Finanze Personali Offline (Windows + Linux)
+
+SOTTOTITOLO
+Le tue finanze. Tutto sotto controllo. Licenza permanente, nessun abbonamento.
+
+DESCRIZIONE
+Vaulta 5.0 è un software desktop per gestire conti, movimenti, budget, obiettivi, tasse, scadenze e report in modo semplice e completamente offline.
+
+Include:
+- Versione Windows
+- Versione Linux
+- Dashboard Panoramica
+- Conti multipli
+- Movimenti e categorie
+- Budget mensili
+- Obiettivi finanziari
+- Tasse e scadenze
+- Report e grafici
+- Backup locali
+
+Privacy:
+I dati restano sul tuo computer. Nessun cloud obbligatorio. Nessun abbonamento.
+
+Prezzo lancio: €14,90
+Prezzo pieno: €19,90
