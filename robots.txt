@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://kelaus15.github.io/vaulta/sitemap.xml
