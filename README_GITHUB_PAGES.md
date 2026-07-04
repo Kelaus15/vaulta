@@ -29,3 +29,5 @@ Nel file `index.html` il valore `og:image` è relativo:
 ```
 
 Quando il sito sarà online, per le anteprime social perfette conviene sostituirlo con l'URL assoluto della pagina GitHub Pages.
+
+Deploy refresh
