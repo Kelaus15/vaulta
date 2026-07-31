@@ -1,4 +1,4 @@
-# Come caricare Vaulta 5.0 su GitHub Pages
+# Come caricare Vaulta 6.0 su GitHub Pages
 
 Carica nella root del repository il contenuto di questa cartella, non lo ZIP e non una cartella esterna.
 

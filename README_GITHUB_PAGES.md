@@ -1,4 +1,4 @@
-# Vaulta 5.0 Landing Page
+# Vaulta 6.0 Landing Page
 
 Landing page statica per GitHub Pages.
 
